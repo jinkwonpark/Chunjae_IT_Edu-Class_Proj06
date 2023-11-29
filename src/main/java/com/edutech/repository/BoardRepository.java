@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface BoardRepository extends JpaRepository<Board, Integer> {
 
     // jpql 사용시 예시 : @Query("select * from board b")
-    // 사용하고 싶으면 build.gradle 가서 implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta' 추가
+    // 사용하고 싶으면 build.gradle 가서 추가
 
 }
