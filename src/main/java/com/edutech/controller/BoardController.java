@@ -37,11 +37,11 @@ public class BoardController {
 
     // 자유게시판 글쓰기
     @GetMapping("/board/write")
-    public String boardForm(){
+    public String boardWriteForm(){
         return "board/write";
     }
 
-    @PostMapping
+    @PostMapping("/board/write")
     @ResponseBody
     public Integer boardWrite(@Valid BoardDTO boardDTO){
         return boardService.register(boardDTO);
