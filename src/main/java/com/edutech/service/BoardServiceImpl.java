@@ -20,6 +20,15 @@ public class BoardServiceImpl implements BoardService {
     // ModelMapper는 반드시 Bean 등록을 해야 함
     private final ModelMapper modelMapper;
 
+    // 자유게시판 목록
+    @Override
+    public List<BoardDTO> findAll() {   // board -> BoardDTO.class 끝까지 반복
+        List<Board> lst = boardRepository.findAll();
+        List<BoardDTO> boardList = lst.stream().map(board -> modelMapper.map(board, BoardDTO.class)).collect(Collectors.toList());
+        return boardList;
+    }
+
+    // 자유게시판 상세보기
     //하나의 데이터만 뽑아올 때는 Optional 사용
     @Override
     public BoardDTO findByBno(Integer bno) {
@@ -28,14 +37,7 @@ public class BoardServiceImpl implements BoardService {
         return dto;
     }
 
-    @Override
-    public List<BoardDTO> findAll() {   // board -> BoardDTO.class 끝까지 반복
-        List<Board> lst = boardRepository.findAll();
-        List<BoardDTO> boardList = lst.stream().map(board -> modelMapper.map(board, BoardDTO.class)).collect(Collectors.toList());
-        return boardList;
-    }
-
-    // 게시글 등록
+    // 자유게시판 글쓰기
     @Override
     public Integer register(BoardDTO boardDTO) {
         Board board = modelMapper.map(boardDTO, Board.class);

@@ -19,6 +19,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    // 자유게시판 목록
     @GetMapping("/board/list")
     @ResponseBody
     public List<BoardDTO> listAll(){
@@ -26,6 +27,7 @@ public class BoardController {
         return boardList;
     }
 
+    // 자유게시판 상세보기
     @GetMapping("/board/read")
     @ResponseBody
     public BoardDTO findByBno(Integer bno){
@@ -33,6 +35,7 @@ public class BoardController {
         return board;
     }
 
+    // 자유게시판 글쓰기
     @GetMapping("/board/write")
     public String boardForm(){
         return "board/write";
