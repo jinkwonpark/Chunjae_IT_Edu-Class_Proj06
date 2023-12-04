@@ -6,7 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 // Entity는 @Data 쓰지 말 것
 @Entity
@@ -36,11 +36,11 @@ public class Board {
 
     @CreatedDate
     @Column(name = "regdate", updatable = false) // name = "regdate" : db에 들어갈 이름, updatable = false : 변경불가
-    private LocalDateTime regDate;
+    private LocalDate regDate;
 
     @LastModifiedDate
     @Column(name = "moddate")
-    private LocalDateTime modDate;
+    private LocalDate modDate;
 
     public void change(String title, String content){
         this.title = title;

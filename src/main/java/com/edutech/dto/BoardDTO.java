@@ -6,9 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 //DTO : 데이터를 통채로 받고 통채로 주기 위해 사용
 @Data
@@ -32,8 +31,8 @@ public class BoardDTO {
     @Size(max = 50)
     private String writer;
 
-    private LocalDateTime regDate;
+    private LocalDate regDate;
 
-    private LocalDateTime modDate;
+    private LocalDate modDate;
 
 }
