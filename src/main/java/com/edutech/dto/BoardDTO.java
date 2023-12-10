@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 //DTO : 데이터를 통채로 받고 통채로 주기 위해 사용
 @Data
@@ -31,8 +32,8 @@ public class BoardDTO {
     @Size(max = 50)
     private String writer;
 
-    private LocalDate regDate;
+    private LocalDateTime regDate;
 
-    private LocalDate modDate;
+    private LocalDateTime modDate;
 
 }
