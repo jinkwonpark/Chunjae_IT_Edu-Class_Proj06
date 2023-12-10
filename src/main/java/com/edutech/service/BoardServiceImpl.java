@@ -6,6 +6,7 @@ import com.edutech.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepository;
@@ -43,5 +45,20 @@ public class BoardServiceImpl implements BoardService {
         Board board = modelMapper.map(boardDTO, Board.class);
         Integer bno = boardRepository.save(board).getBno();
         return bno;
+    }
+
+    // 자유게시판 수정하기
+    @Override
+    public void modify(BoardDTO boardDTO) {
+        Optional<Board> result = boardRepository.findById(boardDTO.getBno());
+        Board board = result.orElseThrow();
+        board.change(boardDTO.getTitle(), boardDTO.getContent());
+        boardRepository.save(board);
+    }
+
+    // 자유게시판 삭제하기
+    @Override
+    public void remove(Integer bno) {
+        boardRepository.deleteById(bno);
     }
 }

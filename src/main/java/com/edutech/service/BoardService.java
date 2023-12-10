@@ -14,4 +14,8 @@ public interface BoardService {
     BoardDTO findByBno(Integer bno);
     // 자유게시판 글쓰기
     Integer register(BoardDTO boardDTO);
+    // 자유게시판 수정하기
+    void modify(BoardDTO boardDTO);
+    // 자유게시판 삭제하기
+    void remove(Integer bno);
 }

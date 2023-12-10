@@ -2,11 +2,14 @@ package com.edutech.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 // Entity는 @Data 쓰지 말 것
 @Entity
@@ -34,13 +37,13 @@ public class Board {
     @Column(length = 50, nullable = false)
     private String writer;
 
-    @CreatedDate
+    @CreationTimestamp  // @CreatedDate = LocalDate
     @Column(name = "regdate", updatable = false) // name = "regdate" : db에 들어갈 이름, updatable = false : 변경불가
-    private LocalDate regDate;
+    private LocalDateTime regDate;
 
-    @LastModifiedDate
+    @UpdateTimestamp    // @LastModifiedDate = LocalDate
     @Column(name = "moddate")
-    private LocalDate modDate;
+    private LocalDateTime modDate;
 
     public void change(String title, String content){
         this.title = title;
